@@ -1,3 +1,29 @@
 .claude/**
 .codex/**
 docs/vendor/
+
+# build artifacts (anchored to repo root so vendor/<lib>/bin/ stays tracked)
+/build/
+/bin/
+/obj/
+/bin-int/
+*.make
+Makefile
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.user
+*.sln
+*.vcxproj*
+*.xcodeproj/
+*.xcworkspace/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# editor backups
+*~
+*.swp
