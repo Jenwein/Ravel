@@ -72,15 +72,15 @@ Ravel's first implementation will use an intentionally modern, personal-project-
 - Premake 5 as the primary build/project generation tool.
 - GoogleTest and GoogleMock for tests.
 - `nlohmann/json` for JSON values, schema-like data, event serialization, and JSONL protocol messages.
-- `yhirose/cpp-httplib` for first HTTP/HTTPS client/server needs.
-- OpenSSL for HTTPS/TLS support where required by HTTP integrations.
+- libcurl for HTTP/HTTPS client transport, including provider API calls and streaming-capable integrations.
+- OpenSSL for HTTPS/TLS support where required by libcurl and other HTTP integrations.
 - CLI11 for the thin runner command-line interface.
 - spdlog for runtime and runner logging.
 - stduuid as a small utility dependency for UUID/session identifiers, unless implementation proves a simpler local identifier is sufficient.
 
 Explicitly deferred dependencies:
 - fmt as a direct dependency; C++23 `std::format` is preferred initially unless spdlog usage makes fmt unavoidable.
-- libcurl; cpp-httplib is the initial HTTP choice.
+- `yhirose/cpp-httplib`; libcurl is the initial HTTP client choice, and an embedded HTTP server should only be added when a concrete runner or IPC need requires one.
 - Boost; avoid it unless a later capability needs a specific Boost component.
 - SQLite; defer until durable session, transcript, or memory storage is in scope.
 - OpenTelemetry C++; defer until structured traces and metrics are needed.
@@ -95,7 +95,7 @@ Explicitly deferred dependencies:
 - Provider neutrality can over-abstract real provider behavior -> Normalize only required runtime semantics and preserve provider diagnostics in structured metadata.
 - Multiple capabilities in the first change can grow large -> Treat this change as contract definition, not full implementation of every future subsystem.
 - Premake is less standard than CMake for downstream package consumption -> Treat Premake as the first project build system and defer install/package consumer workflows.
-- cpp-httplib uses blocking HTTP/1.1 semantics -> Keep first HTTP use cases modest and revisit transport if provider streaming or concurrency requirements exceed it.
+- libcurl is a C API and may need a small C++ wrapper -> Keep the wrapper local to transport/model-adapter code so libcurl details do not leak into core runtime contracts.
 
 ## Migration Plan
 

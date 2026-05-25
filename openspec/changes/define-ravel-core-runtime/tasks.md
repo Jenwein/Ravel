@@ -1,7 +1,7 @@
 ## 1. Project Scaffold
 
 - [ ] 1.1 Add a Premake 5 workspace for `libravel_core`, `ravel-runner`, and GoogleTest-based tests.
-- [ ] 1.2 Configure the project for C++23 and the initial dependency set: GoogleTest/GoogleMock, nlohmann/json, cpp-httplib, OpenSSL, CLI11, spdlog, and stduuid.
+- [ ] 1.2 Configure the project for C++23 and the initial dependency set: GoogleTest/GoogleMock, nlohmann/json, libcurl, OpenSSL, CLI11, spdlog, and stduuid.
 - [ ] 1.3 Add source and include directory layout for runtime, model, tools, context, host API, and protocol schemas.
 - [ ] 1.4 Add a first GoogleTest target that can compile and run without network access or real model providers.
 
